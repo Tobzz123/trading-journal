@@ -1,7 +1,5 @@
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# trading-journal
+Simple CRUD app for documenting trades &amp; insights, and dashboard functionality with P&amp;L calendar
 
 Things you may want to cover:
 
@@ -22,3 +20,4 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+

@@ -18,17 +18,17 @@
 
   <div>
     <%= form.label :trade_type, style: "display: block" %>
-    <%= form.text_field :trade_type %>
+    <%= form.select :trade_type, Trade.trade_types.keys.map { |t| [t.titleize, t]}, {}, { id: 'trade_type_select' }  %>
   </div>
 
   <div>
     <%= form.label :entry_price, style: "display: block" %>
-    <%= form.text_field :entry_price %>
+    <%= form.number_field :entry_price, step:0.01 %>
   </div>
 
   <div>
     <%= form.label :exit_price, style: "display: block" %>
-    <%= form.text_field :exit_price %>
+    <%= form.number_field :exit_price, step:0.01 %>
   </div>
 
   <div>
