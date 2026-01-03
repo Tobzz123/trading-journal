@@ -1,70 +1,65 @@
 class TradesController < ApplicationController
-  before_action :set_trade, only: %i[ show edit update destroy ]
+  before_action :set_trade, only: %i[show update destroy]
 
-  # GET /trades or /trades.json
+  # GET /trades
   def index
-    @trades = Trade.all
+    trades = Trade.all.order(created_at: :desc)
+    render json: trades
   end
 
-  # GET /trades/1 or /trades/1.json
+  # GET /trades/:id
   def show
+    render json: @trade
   end
 
-  # GET /trades/new
-  def new
-    @trade = Trade.new
-  end
-
-  # GET /trades/1/edit
-  def edit
-  end
-
-  # POST /trades or /trades.json
+  # POST /trades
   def create
-    @trade = Trade.new(trade_params)
-
-    respond_to do |format|
-      if @trade.save
-        format.html { redirect_to @trade, notice: "Trade was successfully created." }
-        format.json { render :show, status: :created, location: @trade }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @trade.errors, status: :unprocessable_entity }
-      end
+    trade = Trade.new(trade_params)
+    if trade.save
+      render json: trade, status: :created
+    else
+      render json: { errors: trade.errors }, status: :unprocessable_entity
     end
   end
 
-  # PATCH/PUT /trades/1 or /trades/1.json
+  # PUT/PATCH /trades/:id
   def update
-    respond_to do |format|
-      if @trade.update(trade_params)
-        format.html { redirect_to @trade, notice: "Trade was successfully updated.", status: :see_other }
-        format.json { render :show, status: :ok, location: @trade }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @trade.errors, status: :unprocessable_entity }
-      end
+    if @trade.update(trade_params)
+      render json: @trade
+    else
+      render json: { errors: @trade.errors }, status: :unprocessable_entity
     end
   end
 
-  # DELETE /trades/1 or /trades/1.json
+  # DELETE /trades/:id
   def destroy
-    @trade.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to trades_path, notice: "Trade was successfully destroyed.", status: :see_other }
-      format.json { head :no_content }
-    end
+    @trade.destroy
+    head :no_content
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_trade
-      @trade = Trade.find(params.expect(:id))
-    end
 
-    # Only allow a list of trusted parameters through.
-    def trade_params
-      params.expect(trade: [ :ticker, :trade_type, :entry_price, :exit_price, :shares, :traded_on, :entry_datetime, :exit_datetime, :notes, :option_type, :strike_price, :expiration_date, :contracts ])
-    end
+  def set_trade
+    @trade = Trade.find(params[:id])
+  end
+
+  def trade_params
+    params.require(:trade).permit(
+      :ticker,
+      :trade_type,
+      :option_type,
+      :shares,
+      :contracts,
+      :entry_price,
+      :exit_price,
+      :entry_premium,
+      :exit_premium,
+      :strike_price,
+      :expiration_date,
+      :entry_datetime,
+      :exit_datetime,
+      :notes,
+      :traded_on
+    )
+  end
 end

@@ -10,21 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_11_03_173149) do
+ActiveRecord::Schema[8.1].define(version: 2025_12_04_173732) do
   create_table "trades", force: :cascade do |t|
     t.integer "contracts"
     t.datetime "created_at", null: false
     t.datetime "entry_datetime"
+    t.decimal "entry_premium", precision: 10, scale: 2
     t.decimal "entry_price", precision: 10, scale: 2, null: false
     t.datetime "exit_datetime"
+    t.decimal "exit_premium", precision: 10, scale: 2
     t.decimal "exit_price", precision: 10, scale: 2
     t.date "expiration_date"
     t.text "notes"
-    t.string "option_type"
+    t.integer "option_type"
     t.integer "shares"
     t.decimal "strike_price", precision: 10, scale: 2
     t.string "ticker"
-    t.string "trade_type"
+    t.integer "trade_type"
     t.date "traded_on"
     t.datetime "updated_at", null: false
   end
