@@ -11,7 +11,7 @@ export async function getTrades() {
 
   return res.json();
 }
-
+//TODO: Add type for trade
 export async function createTrade(trade: any) {
   const res = await fetch(`${BASE_URL}/trades`, {
     method: "POST",
