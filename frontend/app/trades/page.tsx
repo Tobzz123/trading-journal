@@ -23,6 +23,8 @@ export default function TradesPage() {
     exit_premium: 0.00,
     strike_price: 0,
     expiration_date: "",
+    entry_datetime: "",
+    exit_datetime: ""
   });
 
   useEffect(() => {
@@ -57,6 +59,8 @@ export default function TradesPage() {
         exit_premium: 0.00,
         strike_price: 0,
         expiration_date: "",
+        entry_datetime: "",
+        exit_datetime: ""
       });
     } catch (err) {
       console.error(err);
@@ -138,6 +142,15 @@ export default function TradesPage() {
           </>
         )}
 
+        <label>
+          Entry Datetime:
+          <input name="entry_datetime" type="datetime-local" value={form.entry_datetime} onChange={handleChange} />
+        </label>
+        <label>
+          Exit Datetime:
+          <input name="exit_datetime" type="datetime-local" value={form.exit_datetime} onChange={handleChange} />
+        </label>
+        
         <button type="submit">Add Trade</button>
       </form>
 
