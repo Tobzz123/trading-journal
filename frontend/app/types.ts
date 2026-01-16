@@ -16,6 +16,8 @@ export type Trade = {
 
     traded_on?: string;
     notes?: string;
+    entry_datetime?: string;
+    exit_datetime?: string;
 }
 
 export enum TradeType {
