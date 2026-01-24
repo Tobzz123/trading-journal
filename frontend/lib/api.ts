@@ -1,3 +1,5 @@
+import { Trade } from "@/app/types";
+
 const BASE_URL = "http://localhost:3001/api/v1";
 
 export async function getTrades() {
@@ -11,7 +13,7 @@ export async function getTrades() {
 
   return res.json();
 }
-//TODO: Add type for trade
+
 export async function createTrade(trade: any) {
   const res = await fetch(`${BASE_URL}/trades`, {
     method: "POST",
@@ -23,6 +25,34 @@ export async function createTrade(trade: any) {
 
   if (!res.ok) {
     throw new Error("Failed to create trade");
+  }
+
+  return res.json();
+}
+
+export async function updateTrade(id: number, trade: Partial<Trade>) {
+  const res = await fetch(`${BASE_URL}/trades/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ trade }),
+  });
+
+  if (!res.ok) {
+    throw new Error("Failed to update trade");
+  }
+
+  return res.json();
+}
+
+export async function deleteTrade(id: number) {
+  const res = await fetch(`${BASE_URL}/trades/${id}`, {
+    method: "DELETE"
+  });
+
+  if (!res.ok) {
+    throw new Error("Failed to delete trade");
   }
 
   return res.json();
