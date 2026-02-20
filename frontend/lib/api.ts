@@ -10,7 +10,7 @@ type TradeUpdate = Partial<Omit<Trade, "id">>;
 
 
 export async function getTrades() {
-  const res = await fetch(`${BASE_URL}api/v1/trades`, {
+  const res = await fetch(`${BASE_URL}/api/v1/trades`, {
     cache: "no-store",
   });
 
@@ -22,7 +22,7 @@ export async function getTrades() {
 }
 
 export async function createTrade(trade: any) {
-  const res = await fetch(`${BASE_URL}api/v1/trades`, {
+  const res = await fetch(`${BASE_URL}/api/v1/trades`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -38,7 +38,7 @@ export async function createTrade(trade: any) {
 }
 
 export async function updateTrade(id: number, trade: TradeUpdate) {
-  const res = await fetch(`${BASE_URL}api/v1/trades/${id}`, {
+  const res = await fetch(`${BASE_URL}/api/v1/trades/${id}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -54,7 +54,7 @@ export async function updateTrade(id: number, trade: TradeUpdate) {
 }
 
 export async function deleteTrade(id: number) {
-  const res = await fetch(`${BASE_URL}api/v1/trades/${id}`, {
+  const res = await fetch(`${BASE_URL}/api/v1/trades/${id}`, {
     method: "DELETE"
   });
 
