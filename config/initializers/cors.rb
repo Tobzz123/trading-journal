@@ -1,8 +1,13 @@
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
     allow do
-      origins "http://localhost:3000", "http://localhost"  # change to your React domain in production
+      if Rails.env.development?
+        origins "http://localhost:3000", "http://localhost:3001"
+      else
+        origins ENV.fetch("CORS_ORIGIN")
+      end
       resource "*",
         headers: :any,
-        methods: [:get, :post, :put, :patch, :delete, :options]
+        methods: [:get, :post, :put, :patch, :delete, :options],
+        credentials: true
     end
   end  
