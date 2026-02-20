@@ -60,3 +60,7 @@ package-lock.json
 
 # Coverage reports (from tests)
 coverage/
+
+# Ignore key files for decrypting credentials and more.
+/config/credentials/*.key
+
