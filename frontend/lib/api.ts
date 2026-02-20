@@ -1,6 +1,8 @@
 import { Trade } from "@/app/types";
 
 const BASE_URL = "http://localhost:3001/api/v1";
+type TradeUpdate = Partial<Omit<Trade, "id">>;
+
 
 export async function getTrades() {
   const res = await fetch(`${BASE_URL}/trades`, {
@@ -30,13 +32,13 @@ export async function createTrade(trade: any) {
   return res.json();
 }
 
-export async function updateTrade(id: number, trade: Partial<Trade>) {
+export async function updateTrade(id: number, trade: TradeUpdate) {
   const res = await fetch(`${BASE_URL}/trades/${id}`, {
-    method: "PUT",
+    method: "PATCH",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ trade }),
+    body: JSON.stringify(trade),
   });
 
   if (!res.ok) {
