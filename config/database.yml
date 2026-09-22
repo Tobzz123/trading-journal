@@ -117,7 +117,7 @@ staging:
 
 development:
   <<: *default
-  database: db/development.sqlite3
+  database: trading_journal_development
 
 # test:
 #   <<: *default

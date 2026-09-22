@@ -5,6 +5,7 @@ import Link from "next/link";
 import { getTrades, createTrade, updateTrade, deleteTrade } from "@/lib/api";
 import { Trade, TradeType } from "../types";
 import { TrendingUp, ArrowRight, DollarSign } from "lucide-react";
+import NavBar from "@/components/NavBar";
 
 export default function TradesPage() {
   //a Trades array to store the trades
@@ -116,6 +117,7 @@ export default function TradesPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-950 dark:to-slate-900">
+      <NavBar />
       <div className="container mx-auto px-4 py-8 max-w-6xl">
         {/* Header */}
         <div className="mb-8 text-center">

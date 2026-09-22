@@ -5,6 +5,7 @@ import Link from "next/link";
 import { getTrades, deleteTrade, updateTrade } from "@/lib/api";
 import { Trade, TradeType } from "../../types";
 import { TrendingUp, ArrowLeft, DollarSign, Edit, Trash2, Calendar, Save, X } from "lucide-react";
+import NavBar from "@/components/NavBar";
 
 export default function AllTradesPage() {
   const [trades, setTrades] = useState<Trade[]>([]);
@@ -105,6 +106,7 @@ export default function AllTradesPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-950 dark:to-slate-900">
+      <NavBar />
       <div className="container mx-auto px-4 py-8 max-w-6xl">
         {/* Header */}
         <div className="mb-8">
